@@ -19,9 +19,6 @@ public class SimpleDateService implements DateService {
      */
     @Override
     public String parseDate(LocalDate localDate) {
-//        String [] mounths = {}
-//        String s = localDate.format(DateTimeFormatter.ofPattern("dd-MMMMM-yyyy(dd-MM-yyyy)"));
-//        String [] arrS = s.split("-");
         return localDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
     }
 
