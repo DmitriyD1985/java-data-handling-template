@@ -3,6 +3,7 @@ package com.epam.izh.rd.online.repository;
 import javax.sound.midi.Soundbank;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,7 +24,7 @@ public class SimpleFileRepository implements FileRepository {
 
     @Override
     public long countFilesInDirectory(String path) {
-        String prefix = "C:\\Ахив\\java-data-handling-template\\src\\main\\resources";
+        String prefix = "C:\\Programs\\java-data-handling-template\\src\\main\\resources";
         File folder = new File(prefix + "/" + path);
         File[] files = folder.listFiles();
         for (File f : files) {
@@ -46,7 +47,7 @@ public class SimpleFileRepository implements FileRepository {
      */
     @Override
     public long countDirsInDirectory(String path) {
-        String prefix = "C:\\Ахив\\java-data-handling-template\\src\\main\\resources";
+        String prefix = "C:\\Programs\\java-data-handling-template\\src\\main\\resources";
         File folder = new File(prefix + "/" + path);
         File[] files = folder.listFiles();
 
@@ -89,14 +90,15 @@ public class SimpleFileRepository implements FileRepository {
      */
     @Override
     public boolean createFile(String path, String name) {
-        File newFile = new File(path+"/"+name);
-        boolean created = false;
+        File filePath = new File("C:\\Programs\\java-data-handling-template\\target\\classes\\"+path);
+        filePath.mkdir();
+        File file = new File(filePath,name);
         try {
-            created = newFile.createNewFile();
+            file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return created;
+        return file.exists();
     }
 
     /**
